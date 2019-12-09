@@ -1,41 +1,41 @@
 ﻿using System;
 
-namespace ToBinary
+namespace ArrayMadness
 {
+    /*
+     * функция, которая прнимает на вход два массива, 
+     * и возвращает true/false если сумма квадратов первого массива больше суммы квадратов второго:
+    */
+
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
-            Console.WriteLine("Введите число: ");
-            ulong input = Convert.ToUInt64(Console.ReadLine());
-            string result = ToBinary(input);
-            Console.WriteLine(result);
-            Console.WriteLine("Обратный перевод: ");
-            BackIn(result);
+            int size = 3;
+            int[] square1 = new int[size];
+            int[] square2 = new int[size];
+            Console.WriteLine("Введите элименты массива: ");
+            SetValue(size, square1, square2);
+            bool result = Result(square1, square2);
 
+            Console.WriteLine($"Результат сравнения: {result}");
+            Console.ReadLine();
         }
 
-        private static void BackIn(string result)
+        private static bool Result(int[] square1, int[] square2)
         {
-            string r = Convert.ToInt64(result, 2).ToString();
-            Console.WriteLine(r);
+            Square square = new Square(); ;
+            bool result = square.ArrayMadnes(square1, square2);
+            return result;
         }
 
-        private static string ToBinary(ulong input)
+        private static void SetValue(int size, int[] square1, int[] square2)
         {
-            char[] BinaryArray;                
-            string Result = "";
-
-            while (input > 0)
-            {
-                Result += input % 2;              
-                input = input / 2;
-            }
-
-            BinaryArray = Result.ToCharArray();
-            Array.Reverse(BinaryArray);
-            Result = new string(BinaryArray);
-            return Result;
+            
+            for (int number = 0; number < size; number++)
+                square1[number] = Convert.ToInt32(Console.ReadLine());
+            for (int number2 = 0; number2 < size; number2++)
+                square2[number2] = Convert.ToInt32(Console.ReadLine());
         }
     }
 }
